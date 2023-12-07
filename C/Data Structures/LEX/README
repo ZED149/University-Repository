@@ -1,0 +1,11 @@
+This project uses a Doubly Linked List (developed in C17) to indirectly sort an array of integers
+Total file are 6 and are as follows:
+List.h		// contains the prorotypes for the mehtods and other functionality of list
+List.c		// contains the definitions of List.h
+ListTest.c	// contains the Test modules for List.h and List.c (throughly tested)
+Lex.c		// it is the main driver file which used the functionality of List.h to implement logic
+README		// this file
+makefile	// this is the makefile for this program that handles compliation properties
+
+
+Note: All 5 (List.h, List.c, ListTest.c and Lex.c) are tested with valgrind memory check tool in case of memory leaks. There are no memory leaks repored by the valgrind tool.

@@ -1,0 +1,1 @@
+This Doubly Linked List is implemented with a dummy node. Moreover, it also contains its own iterator class.

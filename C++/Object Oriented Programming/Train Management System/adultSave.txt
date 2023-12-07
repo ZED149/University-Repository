@@ -1,0 +1,6 @@
+2
+1
+driverAdult male 35 driver mechanical 12345
+2
+salman male 21 student bscs 12345
+xxxxxx female 20 student bscs 67890

@@ -1,0 +1,1 @@
+This Singly Linked List is implemented without using a dummy node.
