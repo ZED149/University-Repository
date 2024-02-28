@@ -36,6 +36,7 @@ class Hotel:
             if availability.size == 0:
                 availability = 'no'
                 print("The hotel id not found.\n")
+                exit(0)
 
         if availability == "yes":
             return True
