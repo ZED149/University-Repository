@@ -20,6 +20,7 @@ public:
 	{
 		T data;					// data to be stored
 		Node* left, *right;		// Left and Right Nodes of this specific Node
+		int height;				// height of the current Node
 	}*NodePtr;
 	// Data Members
 
@@ -30,7 +31,7 @@ public:
 public:
 	// Constructors
 	
-	// Default Constructors with params
+	// Default Constructor with params
 	Tree(const std::string name = "NaN", const int count = 0)
 	{
 #ifdef _DEBUG
@@ -59,10 +60,10 @@ public:
 	virtual void remove(T data) = 0;
 
 	// find
-	virtual bool find(const T &data) = 0;
+	virtual bool find(const T &data) const = 0;
 
 	// get height
-	virtual int get_height() = 0;
+	virtual int get_height(NodePtr t) = 0;
 
 	// size
 	int size()
@@ -91,9 +92,9 @@ public:
 			//it prints data of tree in sorted order
 			//i.e from left-root-right
 			//cout << "inorder() called" << endl;
-			inorder(t->lchild);
 			cout << t->data << ", " << flush;
-			inorder(t->rchild);
+			pre_order_print(t->left);
+			pre_order_print(t->right);
 		}
 	}
 
@@ -113,11 +114,22 @@ public:
 	}
 	
 	// Post Order
-	static void post_order_print(ostream& out, Node* t) {}
+	static void post_order_print(ostream& out, Node* t)
+	{
+		//this is a recursive function
+		//it prints data of tree in sorted order
+		//i.e from left-root-right
+		//cout << "inorder() called" << endl;
+		post_order_print(out, t->left);
+		post_order_print(out, t->right);
+		cout << t->data << ", " << flush;
+	}
 
 	// Destructor
 	virtual ~Tree()
 	{
-
+		this->count = -1;
+		this->name = "DEL";
+		this->root = nullptr;
 	}
 };
