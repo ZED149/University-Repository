@@ -5,7 +5,7 @@
 
 int main()
 {
-	AVL<string> obj("Salman", 0, "sorted.txt");
+	BST<string> obj("Salman", 0, "sorted.txt");
 	obj.print(cout);
 	cout << endl << endl << "Computing height of the tree" << endl;
 	cout << "Height ----> " << obj.get_height() << endl;
