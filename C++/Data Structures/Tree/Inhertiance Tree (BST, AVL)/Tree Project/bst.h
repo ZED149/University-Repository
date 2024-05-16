@@ -28,6 +28,10 @@ class BST : public Tree<T>
 	{
 		// This is a recursive function to insert a node of data T in the Tree
 
+#ifdef _DEBUG
+		static int _counter = 0;
+#endif;
+
 		if (t == nullptr)
 		{
 			// if node is nullptr, this will always happen for the root Node first
@@ -41,6 +45,10 @@ class BST : public Tree<T>
 
 			// increasing count to maintain total number of nodes in the tree
 			this->count++;
+#ifdef _DEBUG
+			_counter++;
+			cout << _counter << endl;
+#endif;
 		}
 		else
 		{
@@ -177,7 +185,8 @@ public:
 				{
 					getline(fout, buffer, '\n');
 					// we need to push each word into the BST as a new node
-					this->insert(buffer);
+					this->insert(buffer);				// recusrive insert
+					//this->test_insert(buffer);		// iterative insert
 				}
 			}
 			else
@@ -196,6 +205,66 @@ public:
 	{
 		// This function is a wrapper function for recursive insert
 		this->insert_R(this->root, data);
+	}
+
+	// test_insert
+	void test_insert(T data)
+	{
+#ifdef _DEBUG
+		static int _counter = 0;
+#endif;
+
+		//cout << "insert() called" << endl;
+		Tree<T>::template Node* t = this->root;	//for traversal
+		Tree<T>::template Node* p = nullptr;
+		Tree<T>::template Node* n = nullptr;	//'p' for previous and 'n' for new node
+
+		//First Case
+		//Only occurs when the tree is empty which means only for the first time
+		if (this->root == NULL)
+		{
+			//create a node and insert into the BST
+			n = new Tree<T>::template Node;
+			n->data = data;
+			n->left= n->right= nullptr;
+			this->root = n;
+#ifdef _DEBUG
+			_counter++;
+			cout << _counter << endl;
+#endif;
+			return;		
+		}
+		//other cases occurs when the tree is not empty
+		while (t != nullptr)
+		{
+			p = t;
+			if (data < t->data)
+				t = t->left;
+			else if (data > t->data)
+				t = t->right;
+			else
+				return;
+		}
+
+		//after the while loop 't' will be at NULL but 'p' will be pointing
+		//to the previous node than 't'.
+		//we can insert into 'p'
+
+		//allocating memory for the new node
+		n = new Tree<T>::template Node;
+		n->data = data;
+		n->left= n->right = nullptr;
+
+		//comparing data with 'p' node
+		if (data < p->data)
+			p->left = n;
+		else if (data > p->data)
+			p->right = n;
+
+#ifdef _DEBUG
+		_counter++;
+		cout << _counter << endl;
+#endif;
 	}
 
 	// remove
